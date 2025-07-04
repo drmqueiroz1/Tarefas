@@ -81,3 +81,9 @@ function newElement() {
 window.onload = function() {
   loadList();
 };
+
+span.onclick = function() {
+  var div = this.parentElement;
+  div.remove(); // remove o elemento do DOM
+  saveList();
+};
