@@ -65,11 +65,11 @@ function newElement() {
   span.appendChild(txt);
   li.appendChild(span);
 
-  span.onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-    saveList();
-  };
+span.onclick = function() {
+  var div = this.parentElement;
+  div.remove(); // remove o elemento do DOM
+  saveList();
+};
 
   document.getElementById("myUL").appendChild(li);
   document.getElementById("myInput").value = "";
@@ -80,10 +80,4 @@ function newElement() {
 // Carrega a lista ao iniciar a página
 window.onload = function() {
   loadList();
-};
-
-span.onclick = function() {
-  var div = this.parentElement;
-  div.remove(); // remove o elemento do DOM
-  saveList();
 };
