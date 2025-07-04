@@ -1,41 +1,63 @@
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-
+// Função para salvar a lista no localStorage
+function saveList() {
+  const listItems = [];
+  const items = document.querySelectorAll('#myUL li');
+  items.forEach(item => {
+    listItems.push({
+      text: item.firstChild.textContent,
+      checked: item.classList.contains('checked')
+    });
+  });
+  localStorage.setItem('myList', JSON.stringify(listItems));
 }
 
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
+// Função para carregar a lista do localStorage
+function loadList() {
+  const savedList = JSON.parse(localStorage.getItem('myList'));
+  if (!savedList) return;
+
+  savedList.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.text;
+    if (item.checked) {
+      li.classList.add('checked');
+    }
+
+    const span = document.createElement('SPAN');
+    const txt = document.createTextNode('\u00D7');
+    span.className = 'close';
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    span.onclick = function() {
+      const div = this.parentElement;
+      div.style.display = 'none';
+      saveList();
+    };
+
+    document.getElementById('myUL').appendChild(li);
+  });
 }
 
+// Evento para marcar/desmarcar itens e salvar a lista
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
+    saveList();
   }
 }, false);
 
+// Função para criar um novo item
 function newElement() {
-  var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
   if (inputValue === '') {
     alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
+    return;
   }
-  document.getElementById("myInput").value = "";
+
+  var li = document.createElement("li");
+  li.textContent = inputValue;
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
@@ -43,10 +65,19 @@ function newElement() {
   span.appendChild(txt);
   li.appendChild(span);
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+  span.onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+    saveList();
+  };
+
+  document.getElementById("myUL").appendChild(li);
+  document.getElementById("myInput").value = "";
+
+  saveList();
 }
+
+// Carrega a lista ao iniciar a página
+window.onload = function() {
+  loadList();
+};
