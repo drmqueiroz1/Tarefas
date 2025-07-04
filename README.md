@@ -3,4 +3,4 @@
 Correção de problema: O app apagava os dados ao atualizar a página 
 
 
-Criei essa lista, para ser usada em basicamente em smartphones, a pedido da minha esposa que tem um ateliê e para não perder nota do que se deve comprar. 
+Criei essa lista, para ser usada em basicamente em smartphones, para não perder nota do que se deve comprar. 
