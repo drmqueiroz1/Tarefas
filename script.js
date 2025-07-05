@@ -29,11 +29,11 @@ function loadList() {
     span.appendChild(txt);
     li.appendChild(span);
 
-    span.onclick = function() {
-      const div = this.parentElement;
-      div.style.display = 'none';
-      saveList();
-    };
+   span.onclick = function() {
+  var div = this.parentElement;
+  div.remove(); // remove o elemento do DOM
+  saveList();
+};
 
     document.getElementById('myUL').appendChild(li);
   });
