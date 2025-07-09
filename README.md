@@ -6,7 +6,9 @@
 Este é um projeto de uma lista de tarefas simples (To-do) desenvolvido como meu primeiro teste prático individual. Neste projeto, criei uma versão digital de uma lista de tarefas simples, 
 onde podemos fazer anotações de tarefas, itens para compra ou o que sua imaginação mandar. 
 
-![Imagem](https://github.com/user-attachments/assets/8c8b2b20-5777-4bf6-8d04-4af275ae2b2f)
+<div align="center">
+  <img src="Lista de Tarefas.png" alt="Lista de Tarefas">
+</div>
 
 ## Descrição do Projeto
 Este é um projeto simples de To-Do List (Lista de Tarefas) desenvolvido utilizando HTML para a estrutura, CSS para o estilo e JavaScript para a funcionalidade interativa.
